@@ -1,10 +1,9 @@
 const mongoose = require("mongoose");
+require("dotenv").config();
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(
-      "mongodb+srv://tariquea266_db_user:safety2025!$@safety-analytics.oefazlk.mongodb.net/?appName=safety-analytics",
-    );
+    await mongoose.connect(process.env.MONGO_URI);
     console.log("MongoDB Connected!");
   } catch (err) {
     console.error("MongoDB Error:", err.message);
