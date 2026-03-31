@@ -1,0 +1,35 @@
+// _layout.scss
+@use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as m;
+
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+  background: v.$bg-page;
+  font-family: v.$font-family;
+}
+
+.main-content {
+  flex: 1;
+  margin-left: v.$sidebar-width;
+  margin-top: v.$topbar-height;
+  padding: v.$spacing-md;
+  min-height: calc(100vh - #{v.$topbar-height});
+  overflow-x: hidden;
+
+  @include m.respond(tablet) {
+    margin-left: 0;
+    padding: v.$spacing-md;
+  }
+
+  @include m.respond(mobile) {
+    padding: v.$spacing-sm;
+  }
+}
+
+.main-dashboard {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 12px;
+  align-items: flex-end;
+}

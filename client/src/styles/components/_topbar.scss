@@ -1,0 +1,118 @@
+@use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as m;
+
+.topbar {
+  position: fixed;
+  top: 0;
+  left: v.$sidebar-width;
+  right: 0;
+  height: v.$topbar-height;
+  background: v.$bg-white;
+  border-bottom: 1px solid v.$border-color;
+  box-shadow: v.$shadow-card;
+  z-index: 1100;
+  @include m.flex(center, space-between);
+  padding: 0 v.$spacing-md;
+
+  @include m.respond(tablet) {
+    left: 0;
+  }
+
+  &__left {
+    @include m.flex(center, flex-start);
+    gap: v.$spacing-sm;
+  }
+
+  &__hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 22px;
+    color: v.$text-primary;
+    line-height: 1;
+    @include m.respond(tablet) {
+      display: block;
+    }
+  }
+
+  &__title {
+    font-size: v.$font-md;
+    font-weight: 500;
+    color: v.$text-primary;
+    margin: 0;
+  }
+
+  &__right {
+    @include m.flex(center, flex-end);
+    gap: v.$spacing-sm;
+  }
+
+  &__btn {
+    padding: 5px 22px 5px 10px;
+    border-radius: v.$radius-sm;
+    font-size: v.$font-sm;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: v.$font-family;
+    transition: all 0.2s;
+    margin-left: 10px;
+
+    &--outlined {
+      border: 1px solid v.$border-color;
+      background: v.$bg-gray;
+      color: v.$text-primary;
+      position: relative;
+      &:hover {
+        border-color: v.$primary;
+        background: v.$primary-dark;
+        color: v.$text-white;
+        .iconsArrow {
+          color: v.$text-white;
+        }
+      }
+    }
+
+    &--contained {
+      border: none;
+      background: v.$bg-gray;
+      color: v.$text-primary;
+      position: relative;
+      &:hover {
+        background: v.$primary-dark;
+        color: v.$text-white;
+        .iconsArrow {
+          color: v.$text-white;
+        }
+      }
+    }
+
+    @include m.respond(mobile) {
+      display: none;
+    }
+  }
+
+  &__icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+    padding: v.$spacing-xs;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.iconsArrow {
+  position: absolute;
+  right: 4px;
+  top: 3px;
+  color: #5b5b5b;
+  font-size: 18px !important;
+}
+
+.iconSearch {
+  font-size: 16px !important;
+  top: 5px;
+}

@@ -1,0 +1,145 @@
+@use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as m;
+
+.sidebar {
+  width: v.$sidebar-width;
+  height: 100vh;
+  background: v.$primary;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+  z-index: 1200;
+  transition: transform 0.3s ease;
+
+  @include m.respond(tablet) {
+    transform: translateX(-100%);
+    &--open {
+      transform: translateX(0);
+    }
+  }
+
+  &__header {
+    @include m.flex(center, flex-start);
+    gap: v.$spacing-sm;
+    padding: v.$spacing-md;
+    background: v.$bg-white;
+    color: v.$primary;
+    min-height: v.$topbar-height;
+
+    &-icon {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      span {
+        display: block;
+        width: 18px;
+        height: 2px;
+        background: v.$primary;
+        border-radius: 2px;
+      }
+    }
+
+    &-title {
+      font-size: v.$font-base;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: v.$text-primary;
+    }
+  }
+
+  &__nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__item {
+    border-bottom: 1px solid rgba(v.$border-color, 0.5);
+  }
+
+  &__btn {
+    @include m.flex(center, flex-start);
+    gap: v.$spacing-sm;
+    width: 100%;
+    padding: 12px v.$spacing-md;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: v.$font-base;
+    font-family: v.$font-family;
+    color: v.$text-white;
+    transition: background 0.2s;
+
+    &:hover {
+      background: rgba(v.$primary, 0.08);
+    }
+
+    &--active {
+      background: v.$primary-light;
+      color: v.$text-primary;
+      .sidebar__item-icon {
+        color: v.$text-white;
+      }
+      &:hover {
+        background: v.$primary-dark;
+      }
+    }
+
+    &-text {
+      flex: 1;
+      text-align: left;
+      font-size: 13px;
+    }
+  }
+
+  &__item-icon {
+    color: v.$primary;
+    @include m.flex(center, center);
+    width: 20px;
+    flex-shrink: 0;
+  }
+
+  &__arrow {
+    font-size: 11px;
+    color: v.$text-white;
+  }
+
+  &__submenu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background: rgba(v.$primary, 0.03);
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease;
+    &--open {
+      max-height: 300px;
+    }
+  }
+
+  &__subitem {
+    padding: 8px v.$spacing-md 8px 48px;
+    font-size: v.$font-sm;
+    color: v.$text-white;
+    cursor: pointer;
+    transition: color 0.2s;
+    &:hover {
+      color: v.$text-primary;
+    }
+  }
+}
+
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1199;
+
+  @include m.respond(tablet) {
+    &--visible {
+      display: block;
+    }
+  }
+}
