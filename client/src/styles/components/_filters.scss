@@ -1,0 +1,76 @@
+@use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as m;
+
+.filters {
+  @include m.card;
+  margin-bottom: v.$spacing-md;
+
+  &__row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__select {
+    height: 34px;
+    min-width: 18%;
+    padding: 0 v.$spacing-sm;
+    border: none;
+    border-radius: v.$radius-sm;
+    font-size: v.$font-base;
+    font-family: v.$font-family;
+    color: v.$text-secondary;
+    background: v.$bg-white;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s;
+    &:focus {
+      border-color: v.$primary;
+    }
+
+    @include m.respond(mobile) {
+      flex: 1 1 calc(50% - #{v.$spacing-sm});
+      min-width: 0;
+    }
+  }
+
+  &__btn-go {
+    height: 34px;
+    min-width: 10%;
+    padding: 0 v.$spacing-md;
+    background: v.$accent-yellow;
+    color: v.$text-primary;
+    border: none;
+    border-radius: v.$radius-sm;
+    font-weight: 700;
+    font-size: v.$font-base;
+    font-family: v.$font-family;
+    cursor: pointer;
+    transition: filter 0.2s;
+    &:hover {
+      filter: brightness(0.92);
+    }
+  }
+
+  &__btn-more {
+    height: 34px;
+    min-width: 10%;
+    padding: 0 v.$spacing-md;
+    background: v.$accent-yellow;
+    color: v.$text-primary;
+    border: none;
+    border-radius: v.$radius-sm;
+    font-size: v.$font-base;
+    font-family: v.$font-family;
+    font-weight: 500;
+    cursor: pointer;
+    @include m.flex(center, center);
+    gap: 4px;
+    transition: background 0.2s;
+    &:hover {
+      filter: brightness(0.92);
+    }
+  }
+}

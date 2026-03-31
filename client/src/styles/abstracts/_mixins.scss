@@ -1,0 +1,50 @@
+// _mixins.scss
+@use "variables" as v;
+
+@mixin flex($align: center, $justify: flex-start, $direction: row) {
+  display: flex;
+  align-items: $align;
+  justify-content: $justify;
+  flex-direction: $direction;
+}
+
+@mixin respond($bp) {
+  @if $bp == mobile {
+    @media (max-width: #{v.$bp-mobile}) {
+      @content;
+    }
+  }
+  @if $bp == tablet {
+    @media (max-width: #{v.$bp-tablet}) {
+      @content;
+    }
+  }
+}
+
+@mixin card {
+  background: v.$bg-white;
+  border-radius: v.$radius-sm;
+  box-shadow: v.$shadow-card;
+  padding: v.$spacing-md;
+  transition: box-shadow 0.2s;
+  &:hover {
+    box-shadow: v.$shadow-hover;
+  }
+}
+
+@mixin chip($bg, $color) {
+  background: $bg;
+  color: $color;
+  font-size: v.$font-sm;
+  font-weight: 600;
+  padding: 2px 4px;
+  border-radius: 999px;
+  display: block;
+  text-align: center;
+}
+
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

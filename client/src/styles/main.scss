@@ -1,0 +1,34 @@
+// main.scss — SASS entry point
+@use './abstracts/variables' as v;
+@use './abstracts/mixins' as m;
+
+// Layouts
+@use './layouts/layout';
+
+// Components
+@use './components/sidebar';
+@use './components/topbar';
+@use './components/statcards';
+@use './components/charts';
+@use './components/filters';
+
+// Global reset
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: v.$font-family;
+  background: v.$bg-page;
+  color: v.$text-primary;
+  font-size: v.$font-base;
+  -webkit-font-smoothing: antialiased;
+}
+
+// Scrollbar
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: v.$bg-page; }
+::-webkit-scrollbar-thumb { background: v.$border-color; border-radius: 4px; }
+

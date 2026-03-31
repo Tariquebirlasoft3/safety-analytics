@@ -1,0 +1,134 @@
+@use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as m;
+
+.stat-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: v.$spacing-sm;
+  margin-bottom: v.$spacing-md;
+
+  background: #ffffff;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  padding: 15px 15px;
+  transition: box-shadow 0.2s;
+  &:hover {
+    box-shadow: v.$shadow-hover;
+  }
+}
+
+.stat-card {
+  flex: 1 1 150px;
+  min-width: 130px;
+  background: #ffffff;
+  border-radius: 2px;
+  padding: 0 10px 0 0px;
+  border-right: 1px solid #dadada;
+
+  &:last-child {
+    border: none;
+  }
+
+  @include m.respond(mobile) {
+    flex: 1 1 calc(50% - #{v.$spacing-sm});
+  }
+
+  &__label {
+    font-size: v.$font-sm;
+    color: v.$text-secondary;
+    letter-spacing: 0.4px;
+    margin-bottom: v.$spacing-xs;
+    @include m.truncate;
+  }
+
+  &__value {
+    font-size: v.$font-md;
+    font-weight: 700;
+    color: v.$text-primary;
+    margin-bottom: v.$spacing-xs;
+    line-height: 1.2;
+  }
+
+  &__flex-chip {
+    display: flex;
+    justify-content: space-between;
+    // align-items: flex-end;
+  }
+
+  &__chips {
+    display: flex;
+    gap: 2px;
+    // flex-wrap: wrap;
+    // gap: v.$spacing-xs;
+  }
+
+  &__yoy {
+    color: v.$text-secondary;
+  }
+
+  &__yoy-info {
+    color: v.$text-secondary;
+    font-size: 10px;
+  }
+
+  &__chip {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 4px;
+    border-radius: 999px;
+
+    &--up {
+      @include m.chip(rgba(v.$bg-white, 0.15), v.$accent-green);
+    }
+    &--down {
+      @include m.chip(rgba(v.$bg-white, 0.15), v.$accent-red);
+    }
+  }
+}
+
+.highlight-row {
+  @include m.card;
+  margin-bottom: v.$spacing-md;
+
+  &__inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: v.$spacing-lg;
+    gap: 10px;
+  }
+
+  &__item {
+    flex: 1 1 180px;
+    border-right: 1px solid #dadada;
+    padding-right: 5px;
+
+    &:last-child {
+      border: none;
+    }
+
+    &-label {
+      font-size: v.$font-sm;
+      color: v.$text-secondary;
+      margin-bottom: 6px;
+    }
+
+    &-value {
+      font-size: v.$font-md;
+      font-weight: 700;
+      color: v.$text-primary;
+      margin-bottom: 6px;
+    }
+
+    &-chips {
+      display: flex;
+      gap: v.$spacing-xs;
+      flex-wrap: wrap;
+    }
+  }
+
+  &__flex-chip {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+}
