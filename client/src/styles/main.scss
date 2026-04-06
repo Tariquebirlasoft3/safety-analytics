@@ -1,19 +1,21 @@
 // main.scss — SASS entry point
-@use './abstracts/variables' as v;
-@use './abstracts/mixins' as m;
+@use "./abstracts/variables" as v;
+@use "./abstracts/mixins" as m;
 
 // Layouts
-@use './layouts/layout';
+@use "./layouts/layout";
 
 // Components
-@use './components/sidebar';
-@use './components/topbar';
-@use './components/statcards';
-@use './components/charts';
-@use './components/filters';
+@use "./components/sidebar";
+@use "./components/topbar";
+@use "./components/statcards";
+@use "./components/charts";
+@use "./components/filters";
 
 // Global reset
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -28,7 +30,195 @@ body {
 }
 
 // Scrollbar
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: v.$bg-page; }
-::-webkit-scrollbar-thumb { background: v.$border-color; border-radius: 4px; }
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: v.$bg-page;
+}
+::-webkit-scrollbar-thumb {
+  background: v.$border-color;
+  border-radius: 4px;
+}
 
+.bgmain {
+  background-image: url(../assets/img/bg.png);
+  height: 100vh;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .inner-container {
+    position: relative;
+    margin: 0 0 0 auto;
+    padding: 0;
+    max-width: 500px;
+    display: grid;
+    align-items: center;
+    height: 100%;
+    background: rgba(25, 118, 210, 0.93);
+  }
+}
+
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.login-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  max-width: 450px;
+  width: 100%;
+
+  .login-header {
+    text-align: center;
+    margin-bottom: 30px;
+
+    h1 {
+      color: #1976d2;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #666;
+      font-size: 14px;
+    }
+  }
+
+  .login-form {
+    input {
+      margin-bottom: 15px;
+    }
+
+    button {
+      margin-top: 20px;
+      font-weight: bold;
+      padding: 12px;
+    }
+  }
+
+  .signup-link {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #666;
+
+    span {
+      color: #1976d2;
+      font-weight: bold;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+// Signup Page Styles
+.signup-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.signup-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  max-width: 450px;
+  width: 100%;
+
+  .signup-header {
+    text-align: center;
+    margin-bottom: 30px;
+
+    h1 {
+      color: #1976d2;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #666;
+      font-size: 14px;
+    }
+  }
+
+  .signup-form {
+    input {
+      margin-bottom: 15px;
+    }
+
+    button {
+      margin-top: 20px;
+      font-weight: bold;
+      padding: 12px;
+    }
+  }
+
+  .login-link {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #666;
+
+    span {
+      color: #1976d2;
+      font-weight: bold;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.topbar__profile {
+  position: relative;
+}
+
+.topbar__dropdown {
+  position: absolute;
+  right: 0;
+  top: 46px;
+  background: white;
+  border: none;
+  width: 145px;
+  height: 100px;
+  padding: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.22);
+  border-radius: 4px;
+
+  button {
+    border: none;
+    background-color: #fff;
+    font-size: 14px;
+    text-align: left;
+    width: 100%;
+    cursor: pointer;
+    padding-top: 10px;
+  }
+
+  .logout {
+    color: #e70000;
+  }
+}

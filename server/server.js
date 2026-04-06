@@ -4,6 +4,8 @@ const cors = require("cors");
 const connectDB = require("./config/db");
 const dashboardRoutes = require("./routes/dashboardRoutes");
 
+const authRoutes = require("./routes/authRoutes");
+
 const app = express();
 
 // Middleware
@@ -14,6 +16,7 @@ app.use(express.json());
 connectDB();
 
 // Routes
+app.use("/api/auth", authRoutes);
 app.use("/api", dashboardRoutes);
 
 // Health check

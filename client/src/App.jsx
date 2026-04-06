@@ -1,52 +1,47 @@
-// This is my Root Component
-import { useState } from 'react'
-import TopBar from './components/TopBar'
-import Sidebar from './components/Sidebar'
-import Dashboard from './pages/Dashboard'
-import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
-import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+import React from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+// import Dashboard from './pages/Dashboard';
+import DashboardLayout from './layouts/DashboardLayout';
+import ProtectedRoute from './components/ProtectedRoute';
 
-
-import './styles/main.scss'
-
-export default function App() {
-  const [activeItem, setActiveItem] = useState('Dashboard')
-  const [sidebarOpen, setSidebarOpen] = useState(false)
-
+function App() {
   return (
-    <div className="app-layout">
+    <BrowserRouter>
+      <Routes>
+        {/* Auth Routes */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
 
-      <TopBar onMenuClick={() => setSidebarOpen(true)} />
+        {/* Protected Dashboard Route */}
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <DashboardLayout />
+            </ProtectedRoute>
+          }
+        />
 
-      <Sidebar
-        activeItem={activeItem}
-        setActiveItem={setActiveItem}
-        isOpen={sidebarOpen}
-        onClose={() => setSidebarOpen(false)}
-      />
+        {/* Default redirect to dashboard if logged in, otherwise to login */}
+        <Route
+          path="/"
+          element={
+            localStorage.getItem('token') ? (
+              <Navigate to="/dashboard" replace />
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        />
 
-      <main className="main-content">
-        <div className='main-dashboard'>
-          <h1 className="topbar__title">Dashboard</h1>
-          <div>
-            <button className="topbar__btn topbar__btn--outlined">Search
-              <SearchOutlinedIcon className='iconsArrow iconSearch' />
-            </button>
-
-            <button className="topbar__btn topbar__btn--outlined">Actions
-              <KeyboardArrowDownRoundedIcon className='iconsArrow' />
-            </button>
-
-            <button className="topbar__btn topbar__btn--contained">Download Report As
-              <KeyboardArrowDownRoundedIcon className='iconsArrow' />
-            </button>
-          </div>
-        </div>
-
-        <Dashboard />
-      </main>
-
-
-    </div>
-  )
+        {/* Catch-all route */}
+        {/* <Route path="*" element={<Navigate to="/login" replace />} /> */}
+        <Route path="*" element={<Navigate to="/dashboard" />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
+
+export default App;
