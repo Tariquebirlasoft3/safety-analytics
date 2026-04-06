@@ -267,7 +267,6 @@ const Signup = () => {
                   fontSize: '16px',
                   borderRadius: 0,
                   height: 48,
-                  fontSize: '16px',
                   '&:hover': { backgroundColor: '#FFC700' }
                 }}
                 type="submit"
