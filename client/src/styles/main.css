@@ -277,6 +277,7 @@
   transition: background 0.2s;
   display: flex;
   align-items: center;
+  text-transform: capitalize;
 }
 
 .iconsArrow {
@@ -870,4 +871,4 @@ body {
 }
 .topbar__dropdown .logout {
   color: #e70000;
-}/*# sourceMappingURL=main.css.map */
+} /*# sourceMappingURL=main.css.map */

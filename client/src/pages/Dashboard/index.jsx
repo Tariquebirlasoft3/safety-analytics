@@ -15,6 +15,12 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true)
   const [filters, setFilters] = useState({})
 
+
+  useEffect(() => {
+    document.title = 'Safety Analytics | Dashboard';
+  }, []);
+
+
   // Fetch data when filters change
   useEffect(() => {
     const params = new URLSearchParams(filters).toString()

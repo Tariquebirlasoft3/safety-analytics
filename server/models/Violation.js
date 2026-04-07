@@ -1,5 +1,10 @@
 const mongoose = require("mongoose");
 
+const {
+  VIOLATION_CATEGORIES,
+  VIOLATION_TYPES,
+} = require("../constants/violationConstants");
+
 const violationSchema = new mongoose.Schema({
   year: {
     type: Number,
@@ -16,12 +21,7 @@ const violationSchema = new mongoose.Schema({
   category: {
     type: String,
     required: true,
-    enum: [
-      "Control Direction/Path",
-      "Control Speed",
-      "Loss of Propulsion",
-      "Others",
-    ],
+    enum: VIOLATION_CATEGORIES,
   },
   dealer: {
     type: String,
@@ -33,7 +33,7 @@ const violationSchema = new mongoose.Schema({
   },
   type: {
     type: String,
-    enum: ["Accelerating", "Slipping", "Noise", "Others"],
+    enum: VIOLATION_TYPES,
   },
   createdAt: {
     type: Date,

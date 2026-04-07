@@ -1,26 +1,29 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 
+const {
+  USER_MESSAGES,
+  USER_RULES,
+  EMAIL_REGEX,
+} = require("../constants/userConstants");
+
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: [true, "Please add a name"],
+    required: [true, USER_MESSAGES.NAME_REQUIRED],
     trim: true,
   },
   email: {
     type: String,
-    required: [true, "Please add an email"],
+    required: [true, USER_MESSAGES.EMAIL_REQUIRED],
     unique: true,
     lowercase: true,
-    match: [
-      /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
-      "Please add a valid email",
-    ],
+    match: [EMAIL_REGEX, USER_MESSAGES.EMAIL_INVALID],
   },
   password: {
     type: String,
-    required: [true, "Please add a password"],
-    minlength: 6,
+    required: [true, USER_MESSAGES.PASSWORD_REQUIRED],
+    minlength: USER_RULES.PASSWORD_MIN_LENGTH,
     select: false,
   },
   createdAt: {
@@ -29,17 +32,17 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-// Password hash karne se pehle
+// FIXED password hashing
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {
-    next();
+    return next();
   }
 
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
 });
 
-// Password compare karne ka method
+// Password compare method
 userSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Box, Container, TextField, Button, Typography, Card, Alert } from '@mui/material';
 // import logo from '../assets/images/logo.png';
@@ -12,6 +12,11 @@ const Login = () => {
   const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  // Update title
+  useEffect(() => {
+    document.title = 'Safety Analytics | Login';
+  }, []);
 
   const handleChange = (e) => {
     setFormData({
@@ -36,7 +41,7 @@ const Login = () => {
       const data = await response.json();
 
       if (data.success) {
-        // Token localStorage mein save karo
+        // Token localStorage saved
         localStorage.setItem('token', data.token);
         localStorage.setItem('user', JSON.stringify(data.user));
 
