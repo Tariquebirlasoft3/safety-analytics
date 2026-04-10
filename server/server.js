@@ -5,6 +5,7 @@ const connectDB = require("./config/db");
 const dashboardRoutes = require("./routes/dashboardRoutes");
 
 const authRoutes = require("./routes/authRoutes");
+const adminRoutes = require("./routes/adminRoutes");
 
 const app = express();
 
@@ -18,6 +19,7 @@ connectDB();
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api", dashboardRoutes);
+app.use("/api/admin", adminRoutes);
 
 // Health check
 app.get("/", (req, res) => {

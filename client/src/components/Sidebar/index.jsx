@@ -23,7 +23,7 @@ const NAV_ITEMS = [
   { label: 'Custom Fields' },
 ]
 
-export default function Sidebar({ activeItem, setActiveItem, isOpen, onClose }) {
+export default function Sidebar({ activeItem, setActiveItem, isOpen, onClose, userRole }) {
   //  Default open ONLY
   const [openMenus, setOpenMenus] = useState({
     'Data Exploration': true,
@@ -94,15 +94,26 @@ export default function Sidebar({ activeItem, setActiveItem, isOpen, onClose }) 
                     : ''
                     }`}
                 >
-                  {item.children.map(child => (
-                    <li
-                      key={child}
-                      className="sidebar__subitem"
-                      onClick={() => setActiveItem(child)}
-                    >
-                      {child}
-                    </li>
-                  ))}
+
+                  {item.children.map(child => {
+                    // Hide User Management for non-admin
+                    if (child === 'User Management' && userRole !== 'admin') {
+                      return null
+                    }
+
+                    return (
+
+                      <li
+                        key={child}
+                        className={`sidebar__subitem${activeItem === child ? ' sidebar__subitem--active' : ''
+                          }`}
+                        onClick={() => setActiveItem(child)}
+                      >
+                        {child}
+                      </li>
+
+                    )
+                  })}
                 </ul>
               )}
             </li>

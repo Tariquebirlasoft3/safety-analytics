@@ -224,3 +224,145 @@ body {
     color: #e70000;
   }
 }
+
+.sidebar__subitem--active {
+  background: #42a5f5;
+  color: #212121;
+}
+
+.user-management {
+  background: #ffffff;
+  padding: 24px;
+  min-height: calc(100vh - 80px);
+
+  /* ---------------- HEADER ---------------- */
+  .um-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+
+    h2 {
+      font-size: 20px;
+      font-weight: 600;
+      color: #2b2b2b;
+    }
+
+    .um-actions {
+      display: flex;
+      gap: 12px;
+
+      .btn-outline {
+        border: 1px solid #d8d8d8;
+        background: #ffffff;
+        padding: 6px 14px;
+        font-size: 13px;
+        cursor: pointer;
+        border-radius: 2px;
+      }
+
+      .btn-primary {
+        background: #ffc400;
+        border: none;
+        padding: 6px 16px;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        border-radius: 2px;
+      }
+    }
+  }
+
+  /* ---------------- TOOLBAR ---------------- */
+  .um-toolbar {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 8px;
+  }
+
+  /* ---------------- TABLE ---------------- */
+  .um-table {
+    border: 1px solid #e4e4e4;
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+
+      thead {
+        background: #fafafa;
+
+        th {
+          text-align: left;
+          padding: 15px 8px;
+          font-size: 14px;
+          color: #282828;
+          border-bottom: 1px solid #e4e4e4;
+        }
+      }
+
+      tbody {
+        tr {
+          border-bottom: 1px solid #e4e4e4;
+
+          &:hover {
+            background: #e3e3e3;
+          }
+
+          td {
+            padding: 10px;
+            font-size: 14px;
+            color: #333;
+
+            &:last-child {
+              display: flex;
+              gap: 12px;
+              align-items: center;
+            }
+
+            .status-active {
+              color: #2e7d32;
+              font-weight: 500;
+            }
+
+            .action-icon {
+              cursor: pointer;
+              color: #1976d2;
+              font-size: 14px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  /* ---------------- PAGINATION ---------------- */
+  .um-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 28px;
+
+    button {
+      border: 1px solid #aeaeae;
+      background: #ffffff;
+      padding: 2;
+      cursor: pointer;
+      border-radius: 2px;
+
+      &:hover {
+        background: #f2f2f2;
+      }
+    }
+
+    span {
+      font-size: 14px;
+      color: #555;
+    }
+  }
+}
+
+.um-pagination button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
